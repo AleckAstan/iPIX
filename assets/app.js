@@ -13,8 +13,8 @@ import './bootstrap'
 
 import './vendor/bootstrap/js/bootstrap.bundle'
 import './vendor/aos/aos'
-import './vendor/swiper/swiper-bundle.min'
+import './vendor/swiper/swiper-bundle'
 import './vendor/purecounter/purecounter'
 //import './vendor/isotope-layout/isotope.pkgd.min';
 import './vendor/glightbox/js/glightbox.min'
-import './js/main.js'
+import './js/main'
