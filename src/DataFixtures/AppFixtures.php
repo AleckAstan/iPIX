@@ -33,7 +33,7 @@ class AppFixtures extends Fixture
         /**
          * creattion de 10 pictures
          */
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             $category = new Category();
             $category
                 ->setName($faker->word())
@@ -44,14 +44,14 @@ class AppFixtures extends Fixture
             /**
              * creation 2pictures/Category
              */
-            for ($j = 0; $j < 2; $j++) {
+            for ($j = 1; $j <= 2; $j++) {
                 $picture = new Pictures();
                 $picture
                     ->setName($faker->words(3, true))
                     ->setDateUpload($faker->dateTimeBetween('-6 month', 'now'))
                     ->setDescription($faker->text())
                     ->setSlug($faker->slug())
-                    ->setFile('/img/portfolio/portfolio-1.jpg')
+                    ->setFile('/img/portfolio/portfolio-' . $i * $j . '.jpg')
                     ->setUser($user)
                     ->addCategory($category);
                 $manager->persist($picture);

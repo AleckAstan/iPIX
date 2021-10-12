@@ -19,6 +19,17 @@ class PicturesRepository extends ServiceEntityRepository
         parent::__construct($registry, Pictures::class);
     }
 
+    /**
+     * @return Pictures[] Returns an array of Pictures objects
+     */
+    public function lastThree()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Pictures[] Returns an array of Pictures objects
     //  */
