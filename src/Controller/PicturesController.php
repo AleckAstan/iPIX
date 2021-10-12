@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Pictures;
 use App\Repository\PicturesRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,6 +29,15 @@ class PicturesController extends AbstractController
         );
         return $this->render('pictures/index.html.twig', [
             'pictures' => $pictures,
+        ]);
+    }
+    /**
+     * @Route("/pictures/{slug}", name="picture_details")
+     */
+    public function details(Pictures $picture): Response
+    {
+        return $this->render('pictures/details.html.twig', [
+            'picture' => $picture,
         ]);
     }
 }
