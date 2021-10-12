@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Hello CategoryController!
+{% endblock %}
+
+{% block body %}
+  <section id="pictures" class="portfolio">
+    <div class="container">
+      <header class="section-header">
+        <p>
+          Categories
+        </p>
+      </header>
+
+      <div class="row gy-4 portfolio-container">
+        {% for category in categories %}
+          {% set pic = category.pictures|last %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="{{ pic.file }}" class="img-fluid" alt="" />
+              <a href="{{
+                path(
+                  'category_pics',
+                  {
+                    slug: category.slug
+                  }
+                )
+                }}">
+                <div class="portfolio-info">
+                  <h4>
+                    {{ category.name }}
+                  </h4>
+                  <p>
+                    {{ category.description }}
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}
