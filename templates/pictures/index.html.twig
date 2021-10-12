@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pictures{% endblock %}
+
+{% block body %}
+
+    <section id="pictures" class="portfolio">
+      <div class="container">
+        <header class="section-header">
+          <p>
+            All Pictures
+          </p>
+        </header>
+
+       
+
+        <div class="row gy-4 portfolio-container"">
+        {% for picture in pictures %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="{{ picture.file }}"
+                class="img-fluid"
+                alt="" />
+              <div class="portfolio-info">
+                <h4>
+                  {{ picture.name }}
+                </h4>
+                <p>
+                  {{ picture.dateUpload | date('d/m/Y') }}
+                </p>
+                <div class="portfolio-links">
+                  <a href="{{ picture.file }}"
+                    data-gallery="portfolioGallery"
+                    class="portfokio-lightbox"
+                    title="App 1">
+                    <i class="bi bi-plus"></i>
+                  </a>
+                  <a href="portfolio-details.html" title="More Details">
+                    <i class="bi bi-link"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        </div>
+      </div>
+      <div class="container justify-content-center">
+          {% do pictures.setPageRange(2) %}
+          {{ knp_pagination_render(pictures,'base/pagination.html.twig') }}
+      </div>
+    </section>
+{% endblock %}
