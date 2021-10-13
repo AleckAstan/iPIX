@@ -8,9 +8,19 @@ use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    private $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
+
     public function load(ObjectManager $manager)
     {
         //Use faker
@@ -22,12 +32,14 @@ class AppFixtures extends Fixture
         $user = new User();
 
         $user
-            ->setEmail('user@email.com')
+            ->setEmail('user@test.com')
             ->setFirstname($faker->firstName())
             ->setName($faker->name())
             ->setAbout($faker->text())
-            ->setFacebook('facebook')
-            ->setPassword('password');
+            ->setFacebook('facebook');
+        $password = $this->hasher->hashPassword($user, 'password');
+        $user->setPassword($password);
+
         $manager->persist($user);
 
         /**
