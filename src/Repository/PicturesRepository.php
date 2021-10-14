@@ -25,7 +25,7 @@ class PicturesRepository extends ServiceEntityRepository
     public function lastThree()
     {
         return $this->createQueryBuilder('p')
-            ->orderBy('p.id', 'DESC')
+            ->orderBy('p.dateUpload', 'DESC')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
