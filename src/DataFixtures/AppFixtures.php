@@ -63,7 +63,7 @@ class AppFixtures extends Fixture
                     ->setDateUpload($faker->dateTimeBetween('-6 month', 'now'))
                     ->setDescription($faker->text())
                     ->setSlug($faker->slug())
-                    ->setFile('/img/portfolio/portfolio-' . $i * $j . '.jpg')
+                    ->setFile('portfolio-' . $i * $j . '.jpg')
                     ->setUser($user)
                     ->addCategory($category);
                 $manager->persist($picture);

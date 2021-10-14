@@ -13,7 +13,8 @@
           <div class="portfolio-details-slider swiper">
             <div class="swiper-wrapper align-items-center">
               <div class="swiper-slide">
-                <img src="{{ picture.file }}" alt="" />
+                <img src="{{ vich_uploader_asset(picture, 'imageFile') }}"
+                  alt="" />
               </div>
             </div>
             <div class="swiper-pagination"></div>

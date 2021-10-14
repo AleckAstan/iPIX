@@ -2,6 +2,7 @@
 namespace App\EventSubscriber;
 
 use App\Entity\Blogpost;
+use App\Entity\Pictures;
 use DateTime;
 use Doctrine\Common\EventSubscriber;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
@@ -21,26 +22,20 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            BeforeEntityPersistedEvent::class => [
-                'setBlogPostSlugAndDateAndUser',
-            ],
+            BeforeEntityPersistedEvent::class => ['setDateAndUser'],
         ];
     }
-    public function setBlogPostSlugAndDateAndUser(
-        BeforeEntityPersistedEvent $event
-    ) {
+    public function setDateAndUser(BeforeEntityPersistedEvent $event)
+    {
         $entity = $event->getEntityInstance();
-        if (!($entity instanceof Blogpost)) {
-            return;
+        if ($entity instanceof Blogpost || $entity instanceof Pictures) {
+            $now = new DateTime('now');
+            $entity->setDateUpload($now);
+
+            $user = $this->security->getUser();
+            $entity->setUser($user);
         }
 
-        $slug = $this->slugger->slug($entity->getTitle());
-        $entity->setSlug($slug);
-
-        $now = new DateTime('now');
-        $entity->setDateUpload($now);
-
-        $user = $this->security->getUser();
-        $entity->setUser($user);
+        return;
     }
 }

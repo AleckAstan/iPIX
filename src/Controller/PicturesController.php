@@ -20,7 +20,7 @@ class PicturesController extends AbstractController
         PaginatorInterface $paginator,
         Request $request
     ): Response {
-        $data = $picturesRepository->findAll();
+        $data = $picturesRepository->findBy([], ['dateUpload' => 'DESC']);
 
         $pictures = $paginator->paginate(
             $data,
