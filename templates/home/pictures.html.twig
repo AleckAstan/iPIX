@@ -35,7 +35,7 @@
                   {{ picture.dateUpload | date('d/m/Y') }}
                 </p>
                 <div class="portfolio-links">
-                  <a href="{{ vich_uploader_asset(picture,'imageFile') }}"
+                  <a href="{{ vich_uploader_asset(picture,'imageFile') | imagine_filter('miniature')}}"
                     data-gallery="portfolioGallery"
                     class="portfokio-lightbox"
                     title="App 1">
