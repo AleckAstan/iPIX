@@ -25,7 +25,7 @@ class PicturesCrudController extends AbstractCrudController
         return [
             TextField::new('name'),
             TextareaField::new('description')->hideOnIndex(),
-            DateField::new('dateUpload'),
+            DateField::new('dateUpload')->hideOnForm(),
             TextField::new('imageFile')
                 ->setFormType(VichImageType::class)
                 ->onlyWhenCreating(),

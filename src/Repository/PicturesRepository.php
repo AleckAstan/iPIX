@@ -39,6 +39,7 @@ class PicturesRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->where(':category MEMBER OF p.category')
             ->setParameter('category', $category)
+            ->orderBy('p.dateUpload', 'DESC')
             ->getQuery()
             ->getResult();
     }

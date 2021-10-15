@@ -4,8 +4,17 @@ liip_imagine:
   driver: 'gd'
   filter_sets:
     miniature:
-      quality: 25
+      quality: 75
       filters:
         thumbnail:
-          size: [300, 300]
-          mode: outbound
+          size: [600, 600]
+    pictureFilter:
+      quality: 75
+      filters:
+        scale:
+          dim: [600, 600]
+    pictureFull:
+      quality: 85
+      filters:
+        scale:
+          dim: [1200, 1200]

@@ -24,7 +24,7 @@
         {% for picture in pictures %}
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
-              <img src="{{ vich_uploader_asset(picture,'imageFile') }}"
+              <img src="{{ vich_uploader_asset(picture,'imageFile') | imagine_filter('pictureFilter')}}"
                 class="img-fluid"
                 alt="" />
               <div class="portfolio-info">
@@ -35,7 +35,7 @@
                   {{ picture.dateUpload | date('d/m/Y') }}
                 </p>
                 <div class="portfolio-links">
-                  <a href="{{ vich_uploader_asset(picture,'imageFile') | imagine_filter('miniature')}}"
+                  <a href="{{ vich_uploader_asset(picture,'imageFile') | imagine_filter('pictureFilter')}}"
                     data-gallery="portfolioGallery"
                     class="portfokio-lightbox"
                     title="App 1">
