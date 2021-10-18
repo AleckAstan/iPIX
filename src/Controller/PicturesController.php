@@ -25,9 +25,9 @@ class PicturesController extends AbstractController
         $pictures = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
-            6 //content per page
+            30 //content per page
         );
-        return $this->render('pictures/index.html.twig', [
+        return $this->render('pictures/pictures.html.twig', [
             'pictures' => $pictures,
         ]);
     }

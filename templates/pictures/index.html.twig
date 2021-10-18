@@ -1,24 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pictures{% endblock %}
+{% block title %}
+  Pictures
+{% endblock %}
 
 {% block body %}
+  <section id="pictures" class="portfolio">
+    <div class="container">
+      <header class="section-header">
+        <p>
+          All Pictures
+        </p>
+      </header>
 
-    <section id="pictures" class="portfolio">
-      <div class="container">
-        <header class="section-header">
-          <p>
-            All Pictures
-          </p>
-        </header>
-
-       
-
-        <div class="row gy-4 portfolio-container"">
+      <div class="row gy-4 portfolio-container grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
         {% for picture in pictures %}
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app grid item">
             <div class="portfolio-wrap">
-              <img src="{{ vich_uploader_asset(picture,'imageFile') | imagine_filter('pictureFilter')}}"
+              <img src="{{ vich_uploader_asset(
+                  picture,
+                  'imageFile'
+                )|imagine_filter('pictureFilter') }}"
                 class="img-fluid"
                 alt="" />
               <div class="portfolio-info">
@@ -26,16 +28,24 @@
                   {{ picture.name }}
                 </h4>
                 <p>
-                  {{ picture.dateUpload | date('d/m/Y') }}
+                  {{ picture.dateUpload|date('d/m/Y') }}
                 </p>
                 <div class="portfolio-links">
-                  <a href="{{ vich_uploader_asset(picture,'imageFile') }}"  
+                  <a href="{{ vich_uploader_asset(picture, 'imageFile') }}"
                     data-gallery="portfolioGallery"
                     class="portfokio-lightbox"
                     title="App 1">
                     <i class="bi bi-plus"></i>
                   </a>
-                  <a href="{{ path('picture_details',{'slug':picture.slug}) }}" title="More Details">
+                  <a href="{{
+                    path(
+                      'picture_details',
+                      {
+                        slug: picture.slug
+                      }
+                    )
+                    }}"
+                    title="More Details">
                     <i class="bi bi-link"></i>
                   </a>
                 </div>
@@ -43,12 +53,11 @@
             </div>
           </div>
         {% endfor %}
-
-        </div>
       </div>
-      <div class="container justify-content-center">
-          {% do pictures.setPageRange(4) %}
-          {{ knp_pagination_render(pictures,'base/pagination.html.twig') }}
-      </div>
-    </section>
+    </div>
+    <div class="container justify-content-center">
+      {% do pictures.setPageRange(4) %}
+      {{ knp_pagination_render(pictures, 'base/pagination.html.twig') }}
+    </div>
+  </section>
 {% endblock %}
