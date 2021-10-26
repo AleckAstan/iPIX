@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Blogpost;
+use App\Entity\Category;
 use App\Entity\Pictures;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -38,5 +39,6 @@ class DashboardController extends AbstractDashboardController
             'fas fa-palette',
             Pictures::class
         );
+        yield MenuItem::linkToCrud('Category', 'fas fa-tags', Category::class);
     }
 }

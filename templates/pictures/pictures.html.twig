@@ -5,25 +5,25 @@
 {% endblock %}
     {% block body %}
 	
-	<section class="imageContainer">
+	<section class="imageContainers">
 
 		<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 0,"fitWidth": "true" }'>
 			{% for picture in pictures %}
 				<div class="grid-item snip1467">
-        <a href="{{ vich_uploader_asset(picture, 'imageFile') }}"
+        <a href="{{ vich_uploader_asset(picture, 'imageFile')|imagine_filter('watermark_filter') }}"
                     data-gallery="portfolioGallery"
                     class="portfokio-lightbox"
                     title="{{ picture.description }}">
-					<img src="{{ vich_uploader_asset( picture, 'imageFile' )|imagine_filter('pictureFilter') }}" class="img-fluid" alt=""/>
+					<img src="{{ vich_uploader_asset( picture, 'imageFile' )|imagine_filter('interlace_filter') }}" class="img-fluid" alt=""/>
                   </a>
 
 					<figcaption>
-					<a href="{{ vich_uploader_asset(picture, 'imageFile') }}"
+					{# <a href="{{ vich_uploader_asset(picture, 'imageFile') }}"
                     data-gallery="portfolioGallery"
                     class="portfokio-lightbox"
                     title="{{ picture.description }}">
                     <i class="bi bi-zoom-in"></i>
-                  </a>
+                  </a> #}
                   <a href="{{
                     path(
                       'picture_details',

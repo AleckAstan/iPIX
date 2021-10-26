@@ -85,13 +85,14 @@
 
 /***************************************IMAGESTYLE**********************************************/
 
-.imageContainer {
+.imageContainers {
     display: flex;
     justify-content: center;
+    margin-top: 2rem;
 }
 
 .grid-item {
-    width: 20vw;
+    width: 20.2vw;
 }
 
 body {
@@ -1223,12 +1224,12 @@ section {
     position: relative;
     overflow: hidden;
     z-index: 1;
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(17, 17, 17, 0.75);
 }
 
 .portfolio .portfolio-wrap::before {
     content: '';
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(32, 32, 32, 0);
     position: absolute;
     left: 30px;
     right: 30px;
@@ -1254,9 +1255,8 @@ section {
     z-index: 3;
     transition: all ease-in-out 0.3s;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: end;
+    align-items: flex-start;
 }
 
 .portfolio .portfolio-wrap .portfolio-info::before {
@@ -1267,8 +1267,6 @@ section {
     position: absolute;
     top: 35px;
     left: 35px;
-    border-top: 3px solid rgba(1, 41, 112, 0.2);
-    border-left: 3px solid rgba(1, 41, 112, 0.2);
     transition: all 0.5s ease 0s;
     z-index: 9994;
 }
@@ -1362,6 +1360,7 @@ section {
 
 .portfolio-details {
     padding-top: 40px;
+    margin-top: 3rem;
 }
 
 .portfolio-details .portfolio-details-slider img {

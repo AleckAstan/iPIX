@@ -18,3 +18,19 @@ liip_imagine:
       filters:
         scale:
           dim: [1200, 1200]
+    watermark_filter:
+      filters:
+        # use and setup the "watermark_image" filter
+        watermark_image:
+          # path to the watermark file (prepended with "%kernel.project_dir%")
+          image: public/img/watermark.png
+          # size of the water mark relative to the input image
+          size: 0.3
+          # set the position of the watermark
+          position: multiple
+    interlace_filter:
+      filters:
+        # use and setup the "interlace" filter
+        interlace:
+          # set the interlace mode to line
+          mode: partition
