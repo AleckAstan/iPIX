@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Pictures{% endblock %}
+
+{% block body %}
+    <h1>Create new Pictures</h1>
+
+    {{ include('pictures_crud/_form.html.twig') }}
+
+    <a href="{{ path('pictures_c_r_u_d_index') }}">back to list</a>
+{% endblock %}
