@@ -41,6 +41,10 @@ class PicturesCRUDController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             ///get image file
+
+            $content = file_get_contents($image);
+            $image = base64_encode($content);
+
             $picture->setFile($image);
             $entityManager->persist($picture);
             $entityManager->flush();

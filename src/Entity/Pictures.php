@@ -43,7 +43,7 @@ class Pictures
     private $slug;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text",length=999999999)
      */
     private $file;
 

@@ -19,7 +19,6 @@ class PicturesType extends AbstractType
             ->add('dateUpload')
             ->add('description')
             ->add('slug')
-            ->add('file')
             ->add('user')
             ->add('category')
             ->add('imageFile', FileType::class, [
