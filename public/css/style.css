@@ -2646,3 +2646,9 @@ section {
     filter: grayscale(0%);
     transform: scale(105%);
 }
+
+.portfolio-item {
+    margin: 1rem;
+    display: flex;
+    width: 10rem;
+}
