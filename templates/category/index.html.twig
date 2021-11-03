@@ -28,7 +28,7 @@
             {% for pic in picture|slice(0, 1) %}
               <img src="data:image/png;base64,{{ pic.file }}"
                 alt=""
-                class="img-fluid grid-item category_image" />
+                class="img-fluid grid-item category_img" />
             {% endfor %}
             <h3 class="category_title">
               {{ category.name }}

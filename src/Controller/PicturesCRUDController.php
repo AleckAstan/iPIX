@@ -23,6 +23,9 @@ class PicturesCRUDController extends AbstractController
     public function __construct(Security $security)
     {
         $this->security = $security;
+        // if ($this->security->getUser()) {
+        //     return $this->redirectToRoute('/');
+        // }
     }
     /**
      * @Route("/", name="pictures_c_r_u_d_index", methods={"GET"})

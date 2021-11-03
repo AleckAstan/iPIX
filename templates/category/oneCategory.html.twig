@@ -13,28 +13,18 @@
 			{% for picture in pictures %}
 				<div class="grid-item snip1467">
         <a href="{{
-            path(
-              'picture_details',
-              {
-                slug: picture.slug
-              }
-            )
-            }}">
-					<img src={{"data:image/jpg;base64,#{ picture.file }"}} class="img-fluid" alt="" width/>
-                  </a>
-          
-					<figcaption>
-                  <a href="{{
                     path(
                       'picture_details',
                       {
                         slug: picture.slug
                       }
                     )
-                    }}"
-                    title="More Details">
-                    <i class="bi bi-plus"></i>
+                    }}" title="More Details">
+					<img src={{"data:image/jpg;base64,#{ picture.file }"}} class="img-fluid" alt="" width/>
                   </a>
+          
+					<figcaption>
+                  <p class="imageP">{{picture.name}}</p>
         </figcaption>
 				</div>
 			{% endfor %}
