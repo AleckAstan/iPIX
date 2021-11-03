@@ -5,46 +5,33 @@
 {% endblock %}
 
 {% block body %}
-  <section id="pictures" class="portfolio">
-    <div class="container">
-      <header class="section-header">
-        <p>
-          Categories
-        </p>
-      </header>
+  <section class="imageContainers category">
+    <div class="category_container">
+      {% for category in categories %}
+        {% set picture = category.pictures %}
 
-      <div>
-        {% for category in categories %}
-          {% set picture = category.pictures %}
-          <div>
-            <div>
-              {# {{ dump(picture) }} #}
-              {% for pic in picture|slice(0, 1) %}
-                <p>
-                  <img src="data:image/png;base64,{{ pic.file }}" alt="" />
-                </p>
-              {% endfor %}
-              <a href="{{
-                path(
-                  'category_pics',
-                  {
-                    slug: category.slug
-                  }
-                )
-                }}">
-                <div>
-                  <h4>
-                    {{ category.name }}
-                  </h4>
-                  <p>
-                    {{ category.description }}
-                  </p>
-                </div>
-              </a>
-            </div>
+        {# {{ dump(picture) }} #}
+
+        <a href="{{
+          path(
+            'category_pics',
+            {
+              slug: category.slug
+            }
+          )
+          }}">
+          <div class="category_card">
+            {% for pic in picture|slice(0, 1) %}
+              <img src="data:image/png;base64,{{ pic.file }}"
+                alt=""
+                class="img-fluid grid-item category_image" />
+            {% endfor %}
+            <h4 class="category_title">
+              {{ category.name }}
+            </h4>
           </div>
-        {% endfor %}
-      </div>
+        </a>
+      {% endfor %}
     </div>
   </section>
 {% endblock %}

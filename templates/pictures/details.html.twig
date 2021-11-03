@@ -12,7 +12,7 @@
           <div class="portfolio-details-slider swiper">
             <div class="swiper-wrapper align-items-center">
               <div class="swiper-slide">
-                <img src="data:image/png;base64,{{ picture.file }}" alt="" />
+                <img src="data:image/jpg;base64,{{ picture.file }}" alt="" />
               </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -34,15 +34,8 @@
               <li>
                 <strong>Date Upload:</strong>{{ picture.dateUpload|date('d/m/Y') }}
               </li>
+              <li>{{ picture.description }}</li>
             </ul>
-          </div>
-          <div class="portfolio-description">
-            <h2>
-              Details of this picture
-            </h2>
-            <p>
-              {{ picture.description }}
-            </p>
           </div>
         </div>
       </div>
