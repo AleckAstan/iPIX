@@ -10,13 +10,13 @@
 		<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 0,"fitWidth": "true" }'>
 			{% for picture in pictures %}
 				<div class="grid-item snip1467">
-        <a href="data:image/jpg;base64,{{ picture.file }}"
+        <a href="data:image/jpg;base64,{{ picture.file}}"
                     data-gallery="portfolioGallery"
                     class="portfokio-lightbox"
                     title="{{ picture.description }}">
-					<img src="data:image/jpg;base64,{{ picture.file }}" class="img-fluid" alt=""/>
+					<img src={{"data:image/jpg;base64,#{ picture.file }"}} class="img-fluid" alt="" width/>
                   </a>
-
+          
 					<figcaption>
 					{# <a href="{{ vich_uploader_asset(picture, 'imageFile') }}"
                     data-gallery="portfolioGallery"

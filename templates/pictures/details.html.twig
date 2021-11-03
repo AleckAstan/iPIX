@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block body %}
-  <!-- ======= Portfolio Details Section ======= -->
   <section id="portfolio-details" class="portfolio-details">
     <div class="container">
       <div class="row gy-4">
@@ -13,8 +12,7 @@
           <div class="portfolio-details-slider swiper">
             <div class="swiper-wrapper align-items-center">
               <div class="swiper-slide">
-                <img src="{{ vich_uploader_asset(picture, 'imageFile') }}"
-                  alt="" />
+                <img src="data:image/png;base64,{{ picture.file }}" alt="" />
               </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -50,5 +48,4 @@
       </div>
     </div>
   </section>
-  <!-- End Portfolio Details Section -->
 {% endblock %}

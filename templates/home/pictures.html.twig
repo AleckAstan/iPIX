@@ -1,49 +1,48 @@
 <section id="pictures" class="portfolio">
-      <div class="container">
-        <header class="section-header">
-          <h2>
-            Pictures
-          </h2>
-          <p>
-            Check our latest Pictures
-          </p>
-        </header>
+  <div class="container">
+    <header class="section-header">
+      <h2>
+        Pictures
+      </h2>
+      <p>
+        Check our latest Pictures
+      </p>
+    </header>
 
-        <div class="row">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row gy-4 portfolio-container"">
-        {% for picture in pictures %}
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="{{ vich_uploader_asset(picture,'imageFile') | imagine_filter('pictureFilter')}}"
-                class="img-fluid"
-                alt="" />
-              <div class="portfolio-info">
-                <h4>
-                  {{ picture.name }}
-                </h4>
-                <p>
-                  {{ picture.dateUpload | date('d/m/Y') }}
-                </p>
-                <div class="portfolio-links">
-                  <a href="{{ path('picture_details',{'slug':picture.slug}) }}" title="More Details">
-                    <i class="bi bi-link"></i>
-                  </a>
-                </div>
+    <div class="row gy-4 portfolio-container">
+      {% for picture in pictures %}
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <img src="{{ vich_uploader_asset(
+                picture,
+                'imageFile'
+              )|imagine_filter('pictureFilter') }}"
+              class="img-fluid"
+              alt="" />
+            <div class="portfolio-info">
+              <h4>
+                {{ picture.name }}
+              </h4>
+              <p>
+                {{ picture.dateUpload|date('d/m/Y') }}
+              </p>
+              <div class="portfolio-links">
+                <a href="{{
+                  path(
+                    'picture_details',
+                    {
+                      slug: picture.slug
+                    }
+                  )
+                  }}"
+                  title="More Details">
+                  <i class="bi bi-link"></i>
+                </a>
               </div>
             </div>
           </div>
-        {% endfor %}
-
         </div>
-      </div>
-    </section>
+      {% endfor %}
+    </div>
+  </div>
+</section>

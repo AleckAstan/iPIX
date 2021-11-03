@@ -1,141 +1,13 @@
 <?php
 
-namespace App\Controller;
-include '../public/cryptage.php';
-
-use App\Entity\Pictures;
-use App\Form\PicturesType;
-use App\Repository\PicturesRepository;
-use DateTime;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
-
-/**
- * @Route("/pictures/c/r/u/d")
- */
-
-class PicturesCRUDController extends AbstractController
-{
-    private Security $security;
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }
-    /**
-     * @Route("/", name="pictures_c_r_u_d_index", methods={"GET"})
-     */
-    public function index(PicturesRepository $picturesRepository): Response
-    {
-        return $this->render('pictures_crud/index.html.twig', [
-            'pictures' => $picturesRepository->findAll(),
-        ]);
-    }
-
-    /**
-     * @Route("/new", name="pictures_c_r_u_d_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $picture = new Pictures();
-        $form = $this->createForm(PicturesType::class, $picture);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $image = $form->get('imageFile')->getData();
-            // //get image file
-            // $RSA = new RSA_Handler();
-
-            // $keys = $RSA->generate_keypair(1024);
-            // $encrypted = $RSA->encrypt($image, $keys);
-            // $decrypted = $RSA->decrypt($encrypted, $keys[1]);
-
-            $entityManager = $this->getDoctrine()->getManager();
-            ///get image file
-
-            $content = file_get_contents($image);
-            $image = base64_encode($content);
-            $picture->setDateUpload(new \DateTime());
-            $user = $this->security->getUser();
-            $picture->setUser($user);
-            $picture->setFile($image);
-            $entityManager->persist($picture);
-            $entityManager->flush();
-
-            return $this->redirectToRoute(
-                'pictures_c_r_u_d_index',
-                [],
-                Response::HTTP_SEE_OTHER
-            );
-        }
-
-        return $this->renderForm('pictures_crud/new.html.twig', [
-            'picture' => $picture,
-            'form' => $form,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="pictures_c_r_u_d_show", methods={"GET"})
-     */
-    public function show(Pictures $picture): Response
-    {
-        return $this->render('pictures_crud/show.html.twig', [
-            'picture' => $picture,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="pictures_c_r_u_d_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Pictures $picture): Response
-    {
-        $form = $this->createForm(PicturesType::class, $picture);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()
-                ->getManager()
-                ->flush();
-
-            return $this->redirectToRoute(
-                'pictures_c_r_u_d_index',
-                [],
-                Response::HTTP_SEE_OTHER
-            );
-        }
-
-        return $this->renderForm('pictures_crud/edit.html.twig', [
-            'picture' => $picture,
-            'form' => $form,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="pictures_c_r_u_d_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Pictures $picture): Response
-    {
-        if (
-            $this->isCsrfTokenValid(
-                'delete' . $picture->getId(),
-                $request->request->get('_token')
-            )
-        ) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($picture);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute(
-            'pictures_c_r_u_d_index',
-            [],
-            Response::HTTP_SEE_OTHER
-        );
-    }
-}
+// To use:
+//
+// $text = "Peter Piper picked a peck of pickled peppers";
+// $RSA = new RSA_Handler();
+// $keys = $RSA->generate_keypair(1024);
+// $encrypted = $RSA->encrypt($text, $keys[0]);
+// $decrypted = $RSA->decrypt($encrypted, $keys[1]);
+// echo $decrypted; //Will print Peter Piper picked a peck of pickled peppers
 
 class RSA_Handler
 {
@@ -373,11 +245,11 @@ class RSA_keymaker
                     $thisdigit >= $thismin
                 ) {
                     $thisdigit = ($thisdigit + rand(0, 9)) % 10;
-                }
+                };
             } else {
                 while ($thisdigit <= $thismax && $thisdigit >= $thismin) {
                     $thisdigit = ($thisdigit + rand(0, 9)) % 10;
-                }
+                };
             }
             $num .= $thisdigit;
             if ($maxed && $thisdigit < $thismax) {
@@ -420,7 +292,7 @@ class RSA_keymaker
                 $num = str_shuffle(
                     substr(base_convert(md5($num), 16, 10), 3, 1) . $num
                 );
-            }
+            };
         }
 
         //Turn the number into an array and return it
@@ -527,3 +399,4 @@ class RSA_keymaker
         return $result;
     }
 }
+?>

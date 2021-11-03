@@ -2528,3 +2528,40 @@ section {
     font-size: 13px;
     color: #012970;
 }
+
+#pictures {
+    width: 30%;
+    margin: 2rem;
+}
+
+.form_container {
+    margin: 5rem;
+}
+
+.picture-index {
+    margin: 5rem;
+    max-width: 80%;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.show-image {
+    flex: 2;
+    max-width: 50%;
+    height: auto;
+}
+
+.show-container {
+    flex: 1;
+}
+
+.btn {
+    margin: 1rem;
+}
+
+.flex-right {
+    justify-content: end;
+}

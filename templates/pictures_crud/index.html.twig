@@ -5,92 +5,67 @@
 {% endblock %}
 
 {% block body %}
-  <h1>
-    Pictures index
-  </h1>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th>
-          Id
-        </th>
-        <th>
-          Name
-        </th>
-        <th>
-          DateUpload
-        </th>
-        <th>
-          Description
-        </th>
-        <th>
-          Slug
-        </th>
-        <th>
-          File
-        </th>
-        <th>
-          actions
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for picture in pictures %}
+  <div class="form_container">
+    <table class="table picture-index">
+      <thead>
         <tr>
-          <td>
-            {{ picture.id }}
-          </td>
-          <td>
-            {{ picture.name }}
-          </td>
-          <td>
-            {{ picture.dateUpload
-              ? picture.dateUpload|date('Y-m-d H:i:s')
-              : '' }}
-          </td>
-          <td>
-            {{ picture.description }}
-          </td>
-          <td>
-            {{ picture.slug }}
-          </td>
-          <td>
-            <img src="data:image/jpg;base64,{{ picture.file }}"
-              class="grid-item" />
-          </td>
-          <td>
-            <a href="{{
-              path(
-                'pictures_c_r_u_d_show',
-                {
-                  id: picture.id
-                }
-              )
-              }}">
-              show
-            </a>
-            <a href="{{
-              path(
-                'pictures_c_r_u_d_edit',
-                {
-                  id: picture.id
-                }
-              )
-              }}">
-              edit
-            </a>
-          </td>
+          <th>
+            Name
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Picture
+          </th>
         </tr>
-      {% else %}
-        <tr>
-          <td colspan="7">
-            no records found
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% for picture in pictures %}
+          <tr>
+            <td>
+              {{ picture.name }}
+            </td>
+            <td>
+              {{ picture.description }}
+            </td>
+            <td>
+              <img src="data:image/jpg;base64,{{ picture.file }}"
+                class="grid-item" />
+            </td>
+            <td>
+              <a href="{{
+                path(
+                  'pictures_c_r_u_d_show',
+                  {
+                    id: picture.id
+                  }
+                )
+                }}">
+                show
+              </a>
+              <a href="{{
+                path(
+                  'pictures_c_r_u_d_edit',
+                  {
+                    id: picture.id
+                  }
+                )
+                }}">
+                edit
+              </a>
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="7">
+              no records found
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-  <a href="{{ path('pictures_c_r_u_d_new') }}">Create new</a>
+    <a href="{{ path('pictures_c_r_u_d_new') }}">Create new</a>
+  </div>
 {% endblock %}

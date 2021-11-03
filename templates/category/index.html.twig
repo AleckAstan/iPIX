@@ -13,14 +13,17 @@
         </p>
       </header>
 
-      <div class="row gy-4 portfolio-container">
+      <div>
         {% for category in categories %}
-          {% set picture = category.pictures|last %}
-          <div class="col-lg-4 col-md-6 portfolio-item">
-            <div class="portfolio-wrap">
-              <img src="{{ vich_uploader_asset(picture, 'imageFile') }}"
-                class="img-fluid"
-                alt="" />
+          {% set picture = category.pictures %}
+          <div>
+            <div>
+              {# {{ dump(picture) }} #}
+              {% for pic in picture|slice(0, 1) %}
+                <p>
+                  <img src="data:image/png;base64,{{ pic.file }}" alt="" />
+                </p>
+              {% endfor %}
               <a href="{{
                 path(
                   'category_pics',
@@ -29,7 +32,7 @@
                   }
                 )
                 }}">
-                <div class="portfolio-info">
+                <div>
                   <h4>
                     {{ category.name }}
                   </h4>
