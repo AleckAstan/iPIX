@@ -6,6 +6,9 @@
 
 {% block body %}
   <section class="imageContainers category">
+    <h1>
+      Categories
+    </h1>
     <div class="category_container">
       {% for category in categories %}
         {% set picture = category.pictures %}
@@ -19,16 +22,17 @@
               slug: category.slug
             }
           )
-          }}">
+          }}"
+          class="category_image">
           <div class="category_card">
             {% for pic in picture|slice(0, 1) %}
               <img src="data:image/png;base64,{{ pic.file }}"
                 alt=""
                 class="img-fluid grid-item category_image" />
             {% endfor %}
-            <h4 class="category_title">
+            <h3 class="category_title">
               {{ category.name }}
-            </h4>
+            </h3>
           </div>
         </a>
       {% endfor %}

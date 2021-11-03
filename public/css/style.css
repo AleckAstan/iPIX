@@ -2567,10 +2567,46 @@ section {
 }
 
 .category_card {
-    width: 20rem;
+    width: 15rem;
+    height: 11rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #ffffff;
+    box-shadow: 5px 12px 15px -10px rgba(0, 0, 0, 0.842);
+    margin: 2rem;
+    position: relative;
+    border: 6px solid #ffffff;
+}
+
+.category_card::before {
+    content: '';
+    width: 15rem;
+    height: 11rem;
+    box-shadow: 5px 12px 15px -10px rgba(0, 0, 0, 0.842);
+    background: #e7e7e6;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: -10px;
+    border: 6px solid #ffffff;
+    transform: rotate(-3deg);
+    transition: transform 0.5s, filter 0.1s ease-out;
+}
+
+.category_card::after {
+    content: '';
+    width: 15rem;
+    height: 11rem;
+    box-shadow: 5px 12px 15px -10px rgba(0, 0, 0, 0.842);
+    background: #d2e3fd;
+    border: 6px solid #ffffff;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 10px;
+    transform: rotate(8deg);
+    transition: transform 0.5s, filter 0.1s ease-out;
 }
 
 .category_container {
@@ -2587,4 +2623,26 @@ section {
 .category_title {
     display: flex;
     justify-content: center;
+    font-size: 2rem;
+    align-items: center;
+    transition: transform 0.5s, filter 0.5s ease-in;
+}
+
+.category_image {
+    transform-origin: 50% 65%;
+    transition: transform 0.5s, filter 0.5s ease-out;
+    filter: grayscale(100%);
+}
+
+.category_image:hover :after {
+    transform: rotate(15deg);
+}
+
+.category_image:hover :before {
+    transform: rotate(-5deg);
+}
+
+.category_image:hover {
+    filter: grayscale(0%);
+    transform: scale(105%);
 }
